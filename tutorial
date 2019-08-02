@@ -1,0 +1,138 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[newfloat,cache=false]{minted}	% package responsável pelo processamento
+\usemintedstyle{autumn}
+
+\title{Instalar LaTeX no Windows}
+\author{Lu\'{i}s Andrade}
+\date{Julho 2018 - Atualizado em Agosto 2019}
+
+\pdfinfo{%
+  /Title    (Instalar LaTeX no Windows)
+  /Author   (Luis Andrade)
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+\newmintedfile[codefilelatex]{tex}{
+  frame=lines,
+  framesep=2mm,
+  fontsize=\scriptsize,
+  fontfamily=courier,
+  linenos=false,
+  breaklines=true,
+  breakanywhere=true,
+}
+\hypersetup{%
+    %draft,	% = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=blue, linkcolor=blue, citecolor=blue,
+} 
+\begin{document}
+\maketitle
+
+Neste documento pretende-se dar uma lista de instru\c{c}\~{o}es para a utiliza\c{c}\~{a}o de \LaTeXe em Windows.
+
+\section{Instala\c{c}\~{a}o}
+
+Em primeiro lugar, \'e necess\'ario instalar os seguintes componentes:
+\begin{itemize}
+ \item MiKTeX (\url{https://miktex.org/download}).
+ \item Python 2.7\footnote{A vers\~{a}o recomendada \'e a 2.7.15. Se tiver Python 3 instalado, ter aten\c{c}\~{a}o a qual est\'a a ser chamado - pode ver com o comando \texttt{python -V}} (\url{https://www.python.org/downloads/release/python-2715/})
+ \item ActivePerl (\url{https://www.activestate.com/activeperl/downloads})
+ \item Kile (\url{https://kile.sourceforge.io/download.php})
+\end{itemize}
+
+Ap\'os a instala\c{c}\~{a}o desses componentes, vamos precisar de instalar o Pygments.
+
+Para isso, vamos adicionar variáveis de ambiente:
+\begin{enumerate}
+ \item Clique \texttt{Windows + Pause Break}.
+ \item Clique em \texttt{Advanced System Settings}.
+ \item Clique em \texttt{Environment Variables}.
+ \item Selecione a variável \texttt{Path} e clique \texttt{Edit}.
+\end{enumerate}
+
+As vari\'aveis de MiKTeX j\'a devem estar com o caminho correto. Vamos adicionar as vari\'aveis ent\~{a}o do \textbf{Python}, das \textbf{pastas de scripts de Python} (para o pip e pygments) e para o Perl (para resolver depend\^encias de \LaTeXe). Pode ver um exemplo dos caminhos na Figura \ref{fig:path} (verifique a pasta Python e Python\textbackslash{}Scripts!).
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{path}
+ \caption{\texttt{Path} necess\'ario.}
+ \label{fig:path}
+\end{figure}
+
+Para verificar que os caminhos foram bem adicionados, corra os seguintes comandos na \texttt{cmd} do Windows:
+\begin{center}
+    \texttt{python -V}
+    
+    \texttt{perl -v}
+    
+    \texttt{pip -V}
+\end{center}
+
+De seguida, vamos instalar o Pygments. Corra o comando \texttt{pip install pygments}. A instala\c{c}\~{a}o deste plugin \'e fundamental.
+
+\section{Configura\c{c}\~{a}o}
+
+Vamos agora passar à configura\c{c}\~{a}o do Kile. Inicie o Kile e deixe-o instalar as \textit{packages} que requisitar.
+
+\begin{enumerate}
+ \item Clique \texttt{Settings}.
+ \item Clique \texttt{Configure Kile}.
+ \item Dê \textit{check} na caixa \texttt{Automatically clean-up files after closing Kile}\footnote{Esta op\c{c}\~{a}o irá limpar ficheiros gerados na compila\c{c}\~{a}o do Kile}.
+ \item Em baixo de \texttt{Tools}, clique em \texttt{Build}.
+ \item Clique em \texttt{New} em baixo da lista de \texttt{Select a tool}. Dê-lhe o nome MakeGlossaries e clique \texttt{Next}
+ \item Selecione a op\c{c}\~{a}o \texttt{makeindex} da lista e clique \texttt{Finish}.
+ \item Meta as configura\c{c}\~{o}es como mostrado na Figura \ref{fig:mg}.
+ \item Clique em \texttt{QuickBuild} na lista de \textit{Tools}.
+ \item Clique em \texttt{New} (debaixo de \texttt{Choose a configuration for the tool ...} e dê-lhe um nome do gênero da Figura \ref{fig:qb}. Aten\c{c}\~{a}o que este nome \'e referenciado no ficheiro de projeto do Kile (se estiver a utilizar um template, ver o nome da ferramenta que est\'a a ser utilizada pelo QuickBuild).
+ \item Meta as configura\c{c}\~{o}es como visto na Figura \ref{fig:qb} (na mesma ordem).
+ \item Clique em \texttt{PDFLaTeX} da lista de \textit{Tools}.
+ \item Nas \texttt{Options}, altere o conteúdo para \texttt{-synctex=1 -interaction=nonstopmode \%source --shell-escape}.
+\end{enumerate}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{makeglossaries}
+ \caption{Configura\c{c}\~{o}es do \texttt{MakeGlossaries}.}
+ \label{fig:mg}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{quickbuild}
+ \caption{Configura\c{c}\~{o}es do \texttt{QuickBuild}.}
+ \label{fig:qb}
+\end{figure}
+
+% Principio e a figura
+Em princ\'ipio, a instala\c{c}\~{a}o do \LaTeXe estar\'{a} concluida. Para certificar que tudo ficou bem instalado, crie um novo ficheiro no Kile (caso n\~ao consiga criar um ficheiro novo, espere que o Kile conclua a instala\c{c}\~{a}o de todas os plugins, e depois reinicie o Kile) com o c\'odigo na Listagem \ref{ls:teste} e corra o PDFLaTeX. O resultado deve ser igual \`{a} Figura \ref{fig:resultado} (m\'{a} identa\c{c}\~{a}o pode causar o desaparecimento das letras iniciais das frases).
+
+\begin{listing}[H]
+    \caption{Teste \LaTeXe}
+    \label{ls:teste}
+    \codefilelatex{teste.tex}
+\end{listing}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{resultado2}
+ \caption{Resultado do teste.}
+ \label{fig:resultado}
+\end{figure}
+
+No caso do relat\'orio, a ferramenta utilizada para a compila\c{c}\~{a}o seria o \texttt{QuickBuild}. Caso tenha ocorrido algum erro, v\'a ao \texttt{Output} no Kile (em baixo, ao lado da op\c{c}\~{a}o \textit{default} \texttt{Log and Messages}). Caso seja um erro relacionado com o Minted ou o Pygments, experimente apagar todos os ficheiros tempor\'arios, incluindo a pasta \texttt{\_minted-XXXX} (onde XXXX \'e o nome do ficheiro principal) e certifique-se que tem todas as ferramentas instaladas. Caso n\~{a}o consiga, contacte o seu orientador.
+
+\end{document}
