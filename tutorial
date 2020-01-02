@@ -97,7 +97,7 @@ Vamos agora passar à configura\c{c}\~{a}o do Kile. Inicie o Kile e deixe-o inst
  \item Selecione a op\c{c}\~{a}o \texttt{makeindex} da lista e clique \texttt{Finish}.
  \item Meta as configura\c{c}\~{o}es como mostrado na Figura \ref{fig:mg}.
  \item Clique em \texttt{QuickBuild} na lista de \textit{Tools}.
- \item Clique em \texttt{New} (debaixo de \texttt{Choose a configuration for the tool ...} e dê-lhe um nome do gênero da Figura \ref{fig:qb}. Aten\c{c}\~{a}o que este nome \'e referenciado no ficheiro de projeto do Kile (se estiver a utilizar um template, ver o nome da ferramenta que est\'a a ser utilizada pelo QuickBuild).
+ \item Clique em \texttt{New} (debaixo de \texttt{Choose a configuration for the tool ...} e dê-lhe um nome do gênero da Figura \ref{fig:qb}. \textbf{Aten\c{c}\~{a}o que este nome \'e referenciado no ficheiro de projeto do Kile (se estiver a utilizar um template, ver o nome da ferramenta que est\'a a ser utilizada pelo QuickBuild). O nome default do template da ESTG \'e \texttt{PDFLatex+Biber+MakeGlossaries+Forward} e est\'a dispon\'ivel no ficheiro \texttt{projeto.kilepr} (case-sensitive!)}.
  \item Meta as configura\c{c}\~{o}es como visto na Figura \ref{fig:qb} (na mesma ordem).
  \item Clique em \texttt{PDFLaTeX} da lista de \textit{Tools}.
  \item Nas \texttt{Options}, altere o conteúdo para \texttt{-synctex=1 -interaction=nonstopmode \%source --shell-escape}.
